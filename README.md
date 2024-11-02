@@ -13,6 +13,7 @@ minikube start
 ```bash     
 # ver status 
 minikube status
+```
 
 ```bash     
 # criar um deployment de forma imperativa (isso nao vai funcionar) pq esta pegando pelo nome local da imagem 

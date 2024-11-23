@@ -40,5 +40,27 @@ docker push rafaelfabri/kub-first-app
 kubectl create deployment first-app --image=rafaelfabri/kub-first-app
 ```
 
+comando para expor a porta do por meio de um service
+```bash     
+kubectl expose deployment first-app --type= --port=8080 --image=rafaelfabri/kub-first-app
+```
+
+Existem diferentes tipos de expose:
+* --type=ClusterIP : somente exposto internamente dentro dodeployment
+* --type=LoadBalancer : utiliza um LoadBalancer no cluster onde ele vai gerar um unico address para acessar o pod (so funciona se exister esse servico na infra -  AWS tem isso e minikube tbm) 
+
+Para vermos as portas temos e links do LoadBalancer, temos que fazer o comando 
+
+```bash     
+kubectl get services
+```
+
+Porem, localmente vamos ter que executar o comando abaixo para o minikube entregar a url, isso [e um padrao do minikube, na cloud com um LoadBalancer real ja entregará o EXTERNAL-IP no comando acima 
+
+```bash     
+minikube service first-app
+```
+
+
 
 

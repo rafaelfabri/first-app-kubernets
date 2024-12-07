@@ -46,7 +46,7 @@ kubectl create deployment first-app --image=rafaelfabri/kub-first-app
 
 comando para expor a porta do por meio de um service
 ```bash     
-kubectl expose deployment first-app --type= --port=8080 --image=rafaelfabri/kub-first-app
+kubectl expose deployment first-app --type= --port=8080 
 ```
 
 Existem diferentes tipos de expose:
@@ -89,3 +89,34 @@ kubectl set image deployoment/first-app --kub-first-app=rafaelfabri/kub-first-ap
 ```
 
 * --kub-first-app esse termo temos que ir la minikube dashboard e encontrar o nome da container que queremos atualizar  
+
+
+Comando Rollout para vermos o status da atualizacao que fizemos
+```bash     
+kubectl rollout status deployment/first-app
+```
+
+vamos supor que nos comandos acima subimos uma imagem com codigo quebrado, isso vai ocasionar um erro no container e nosso servico vai ficar indisponivel. Agora devemos dar um rollback.
+
+Comando anteriror vai fazer voltarmos na imagem anteiror que tinhamos subido e estava funcionando, nao vai tentar levantar a nova imagem.
+```bash     
+kubectl rollout undo deployment/first-app
+```
+
+Tambem podemos ver o o historico 
+```bash     
+kubectl rollout history deployment/first-app
+```
+
+Tambem podemos ver mais detalhe de cada historico individual
+```bash     
+kubectl rollout history deployment/first-app --revision=3
+```
+
+Caso a gente queira voltar realmente para um deploy mais antigo especifico
+Tambem podemos ver mais detalhe de cada historico individual
+```bash     
+kubectl rollout history deployment/first-app --to-revision=1
+``` 
+
+

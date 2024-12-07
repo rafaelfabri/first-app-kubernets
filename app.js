@@ -4,6 +4,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   res.send(`
+    update tag:2.0
     <h1>Hello from this NodeJS app!</h1>
     <p>Try sending a request to /error and see what happens</p>
   `);
